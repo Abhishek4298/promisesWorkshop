@@ -37,17 +37,45 @@ const es6 = require('es6-promise');
  
 
 
-function parsePromised(file) {
-  return new Promise(function (fulfill, reject) {
-    try {
-      fulfill(JSON.parse(file));
-    } catch (err) {
-      reject(err);
-    }
-  });
+// function parsePromised(file) {
+//   return new Promise(function (fulfill, reject) {
+//     try {
+//       fulfill(JSON.parse(file));
+//     } catch (err) {
+//       reject(err);
+//     }
+//   });
+// }
+// function onReject(error) {
+//   console.log(error.message);
+// }
+// parsePromised(process.argv[2])
+// .then(null, onReject);
+
+
+
+function iterate(num) {
+console.log(num);
+return num + 1;
 }
+
+function alwaysThrows() {
+throw new Error('OH NOES');
+}
+
 function onReject(error) {
-  console.log(error.message);
+console.log(error.message);
 }
-parsePromised(process.argv[2])
-.then(null, onReject);
+
+Promise.resolve(iterate(1))
+.then(iterate)
+.then(iterate)
+.then(iterate)
+.then(iterate)
+.then(alwaysThrows)
+.then(iterate)
+.then(iterate)
+.then(iterate)
+.then(iterate)
+.then(iterate)
+.catch(onReject); 

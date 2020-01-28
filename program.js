@@ -81,30 +81,38 @@ const es6 = require('es6-promise');
 // .catch(onReject); 
 
 
-function all(a, b) {
-  return new Promise(function (fulfill, reject) {
-    var counter = 0;
-    var out = [];
+// function all(a, b) {
+//   return new Promise(function (fulfill, reject) {
+//     var counter = 0;
+//     var out = [];
 
-    a.then(function (val) {
-      out[0] = val;
-      counter++;
+//     a.then(function (val) {
+//       out[0] = val;
+//       counter++;
 
-      if (counter >= 2) {
-        fulfill(out);
-      }
-    });
+//       if (counter >= 2) {
+//         fulfill(out);
+//       }
+//     });
 
-    b.then(function (val) {
-      out[1] = val;
-      counter++;
+//     b.then(function (val) {
+//       out[1] = val;
+//       counter++;
 
-      if (counter >= 2) {
-        fulfill(out);
-      }
-    });
-  });
-}
+//       if (counter >= 2) {
+//         fulfill(out);
+//       }
+//     });
+//   });
+// }
 
-all(getPromise1(), getPromise2())
-  .then(console.log); 
+// all(getPromise1(), getPromise2())
+//   .then(console.log); 
+
+var qhttp = require('q-io/http');
+
+qhttp.read("http://localhost:1337")
+.then(function (json) {
+  console.log(JSON.parse(json));
+})
+.then(null, console.error)

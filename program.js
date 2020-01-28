@@ -1,4 +1,10 @@
-setTimeout(function ()
+const es6 = require('es6-promise');
+
+var promise = new Promise(function (fulfill, reject) {
+
+  setTimeout(function ()
   {
-    console.log('TIMED OUT!');
-  },300);
+    fulfill("FULFILLED!");
+  },300)
+});
+promise.then(console.log)

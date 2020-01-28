@@ -109,10 +109,13 @@ const es6 = require('es6-promise');
 // all(getPromise1(), getPromise2())
 //   .then(console.log); 
 
-var qhttp = require('q-io/http');
+require('es6-promise')
+const HTTP = require("q-io/http")
 
-qhttp.read("http://localhost:1337")
-.then(function (json) {
-  console.log(JSON.parse(json));
+HTTP.read('http://localhost:7000')
+.then((response) => response.toString())
+.then(response => {
+HTTP.read('http://localhost:7001/'+ response)
+.then(JSON.parse)
+.then(console.log)
 })
-.then(null, console.error)

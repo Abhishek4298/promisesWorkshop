@@ -1,16 +1,11 @@
 const es6 = require('es6-promise');
 
 var promise = new Promise(function (fulfill, reject) {
-
-  setTimeout(function ()
-  {
-    //fulfill("FULFILLED!");
-    reject(new Error("REJECTED!"))
-
-  },300)
+  fulfill("I FIRED")
+  reject(new Error("I DID NOT FIRE"));
 });
 //promise.then(console.log)
 function onReject (error) {
   console.log(error.message);
 }
-promise.then(null, onReject);
+promise.then(console.log,onReject);
